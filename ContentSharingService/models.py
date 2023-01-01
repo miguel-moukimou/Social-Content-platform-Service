@@ -30,7 +30,7 @@ class PostItem(models.Model):
 class Comment(models.Model):
     created_by =  models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
-    PostItem = models.ForeignKey(PostItem,on_delete=models.SET_NULL,null=True)
+    PostItem = models.ForeignKey(PostItem, related_name="comments", on_delete=models.SET_NULL,null=True)
     message = models.TextField(null=True,blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 

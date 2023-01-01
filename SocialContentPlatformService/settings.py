@@ -9,11 +9,15 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+from pathlib import Path
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -120,3 +124,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Enable WhiteNoise's GZip compression of static assets.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
