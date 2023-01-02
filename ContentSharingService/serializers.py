@@ -9,8 +9,10 @@ class ImplicitPostItemSerializer(
 ):
     class Meta:
         comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+        created_by = serializers.ReadOnlyField(source='created_by.username')
+        image = serializers.ImageField(required=False)
         model = PostItem
-        fields = ['_id', 'title', 'image', 'content_category', 'description', 'rating', 'numReviews', 'content_keywords', 'createdAt', 'comments']
+        fields = ['_id', 'title', 'image', 'created_by', 'content_category', 'description', 'rating', 'numReviews', 'content_keywords', 'createdAt', 'comments']
 
 
 class CommentSerializer(serializers.ModelSerializer):
